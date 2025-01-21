@@ -2,137 +2,202 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard de Despesas 2025</title>
-    
-    <!-- Materialize CSS (framework de design) -->
+    <title>Resumo de Despesas 2025</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
-    <!-- Ícones -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-    <!-- Chart.js para gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <style>
-        /* Estilos personalizados */
-        .card {
-            transition: transform 0.3s;
+        :root {
+            --pastel-green: #b8e0d2;
+            --pastel-blue: #d6eaff;
+            --pastel-lilac: #e8dff5;
         }
-        .card:hover {
-            transform: scale(1.03);
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
+
         .chart-container {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
-            margin-top: 20px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 400px;
         }
-        .dashboard-title {
-            color: #2c3e50;
+
+        .dash-card {
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
             text-align: center;
-            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table {
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .grey-text {
+            color: #bdbdbd !important;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2 class="dashboard-title"><i class="material-icons medium">account_balance</i> Controle de Despesas 2025</h2>
+<div class="dashboard-container">
+    <!-- Título -->
+    <div class="center-align" style="margin-bottom: 40px">
+        <h4 class="teal-text text-darken-2">
+            <i class="material-icons">spa</i> Resumo de Despesas
+        </h4>
+        <p class="grey-text" style="font-size: 0.9em">
+            (Carol, Maria Eduarda e Mariana)
+        </p>
+    </div>
 
-    <!-- Cards Resumo -->
+    <!-- Cards de Responsáveis -->
     <div class="row">
-        <!-- Card 1 - Total Gasto -->
-        <div class="col s12 m4">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Total Gasto</span>
-                    <h3>R$ 12.345,00</h3>
-                    <p>+5% vs previsto</p>
-                </div>
+        <div class="col s12 m6">
+            <div class="dash-card" style="background: var(--pastel-green)">
+                <h5>Total Carolina</h5>
+                <h4 id="totalCarolina">R$ 0,00</h4>
+                <p class="grey-text" id="percentCarolina">0% do total</p>
             </div>
         </div>
 
-        <!-- Card 2 - Orçamento Restante -->
-        <div class="col s12 m4">
-            <div class="card green darken-2">
-                <div class="card-content white-text">
-                    <span class="card-title">Orçamento Restante</span>
-                    <h3>R$ 45.678,00</h3>
-                    <p>83% disponível</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3 - Maior Despesa -->
-        <div class="col s12 m4">
-            <div class="card red darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Maior Despesa</span>
-                    <h3>R$ 2.500,00</h3>
-                    <p>Aluguel</p>
-                </div>
+        <div class="col s12 m6">
+            <div class="dash-card" style="background: var(--pastel-blue)">
+                <h5>Total Eduardo</h5>
+                <h4 id="totalEduardo">R$ 368,00</h4>
+                <p class="grey-text" id="percentEduardo">100% do total</p>
             </div>
         </div>
     </div>
 
-    <!-- Gráfico -->
+    <!-- Gráfico de Pizza -->
     <div class="chart-container">
-        <canvas id="expenseChart"></canvas>
+        <canvas id="categoryChart"></canvas>
     </div>
 
-    <!-- Tabela de Despesas -->
-    <table class="striped highlight">
-        <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Aluguel</td>
-                <td>R$ 2.500,00</td>
-                <td>05/01/2025</td>
-                <td><span class="new badge green" data-badge-caption="Pago"></span></td>
-            </tr>
-            <!-- Adicione mais linhas conforme necessário -->
-        </tbody>
-    </table>
+    <!-- Tabela Descritiva -->
+    <div class="data-table">
+        <table class="striped centered">
+            <thead style="background: var(--pastel-lilac)">
+                <tr>
+                    <th>Data</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Quem Gerou</th>
+                    <th>Responsável</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>21/01/2025</td>
+                    <td>Eletrônicos</td>
+                    <td>R$ 368,00</td>
+                    <td>Carol, Maria Eduarda e Mariana</td>
+                    <td>Eduardo</td>
+                </tr>
+                <tr>
+                    <td class="grey-text">-</td>
+                    <td>Alimentação</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                </tr>
+                <tr>
+                    <td class="grey-text">-</td>
+                    <td>Vestuário</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                </tr>
+                <tr>
+                    <td class="grey-text">-</td>
+                    <td>Maquiagem</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                </tr>
+                <tr>
+                    <td class="grey-text">-</td>
+                    <td>Academia</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                    <td class="grey-text">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
-    // Configuração do gráfico
-    const ctx = document.getElementById('expenseChart').getContext('2d');
+    // Configuração do Gráfico
+    const ctx = document.getElementById('categoryChart').getContext('2d');
     new Chart(ctx, {
-        type: 'line',
+        type: 'pie',
         data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+            labels: ['Eletrônicos', 'Alimentação', 'Vestuário', 'Maquiagem', 'Academia'],
             datasets: [{
-                label: 'Gastos Mensais',
-                data: [12000, 19000, 3000, 5000, 2000, 3000],
-                borderColor: '#2c3e50',
-                tension: 0.4
+                data: [368, 0, 0, 0, 0],
+                backgroundColor: [
+                    '#88c9b9',
+                    '#ffb3ba',
+                    '#ffdfba',
+                    '#bae1ff',
+                    '#cbaacb'
+                ],
+                borderWidth: 0
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Despesas Mensais 2025'
+                    position: 'right',
+                    labels: {
+                        boxWidth: 20,
+                        padding: 15,
+                        font: {
+                            size: 14
+                        }
+                    }
                 }
             }
         }
     });
+
+    // Função de Cálculo Automático (Para uso futuro)
+    function calcularTotais() {
+        let totalEduardo = 368.00;
+        let totalCarolina = 0.00;
+        let totalGeral = totalEduardo + totalCarolina;
+
+        // Atualiza os cards
+        document.getElementById('totalEduardo').textContent = 
+            `R$ ${totalEduardo.toFixed(2).replace('.', ',')}`;
+        document.getElementById('totalCarolina').textContent = 
+            `R$ ${totalCarolina.toFixed(2).replace('.', ',')}`;
+
+        document.getElementById('percentEduardo').textContent = 
+            `${((totalEduardo / totalGeral) * 100 || 0).toFixed(1)}% do total`;
+        document.getElementById('percentCarolina').textContent = 
+            `${((totalCarolina / totalGeral) * 100 || 0).toFixed(1)}% do total`;
+    }
+
+    // Executar ao carregar
+    document.addEventListener('DOMContentLoaded', calcularTotais);
 </script>
 
-<!-- Scripts Materialize -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
 </body>
 </html>
