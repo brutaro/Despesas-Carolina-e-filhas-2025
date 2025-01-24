@@ -138,13 +138,13 @@
             <div class="summary-grid">
                 <div class="summary-item carolina">
                     <div>Total Carolina</div>
-                    <div class="summary-value">R$ 0,00</div>
-                    <div>0% do total</div>
+                    <div class="summary-value">R$ 450,00</div>
+                    <div>39% do total</div>
                 </div>
                 <div class="summary-item eduardo">
                     <div>Total Eduardo</div>
                     <div class="summary-value">R$ 710,00</div>
-                    <div>100% do total</div>
+                    <div>61% do total</div>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                         <th>Tipo</th>
                         <th>Valor</th>
                         <th>Quem Gerou</th>
-                        <th>Quem Pagou</th> <!-- Coluna atualizada -->
+                        <th>Quem Pagou</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -191,6 +191,14 @@
                         <td>Eduardo</td>
                     </tr>
                     <tr>
+                        <td>24/01/2025</td>
+                        <td>Terapia</td>
+                        <td>Sessão de terapia</td>
+                        <td class="value-cell">R$ 450,00</td>
+                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
+                    </tr>
+                    <tr>
                         <td>-</td>
                         <td>Alimentação</td>
                         <td>-</td>
@@ -206,14 +214,6 @@
                         <td>-</td>
                         <td>-</td>
                     </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>Maquiagem</td>
-                        <td>-</td>
-                        <td class="value-cell">-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -221,25 +221,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Dados atualizados
+            // Dados atualizados com cores distintas
             const categoryData = {
-                labels: ['Eletrônicos', 'Mensalidades', 'Alimentação', 'Vestuário', 'Maquiagem'],
+                labels: ['Eletrônicos', 'Mensalidades', 'Terapia', 'Alimentação', 'Vestuário'],
                 datasets: [{
-                    data: [368, 342, 0, 0, 0],
+                    data: [368, 342, 450, 0, 0],
                     backgroundColor: [
-                        '#88c9b9',
-                        '#FFD8B1',
-                        '#ffb3ba',
-                        '#ffdfba',
-                        '#bae1ff'
-                    ]
+                        '#88c9b9', // Eletrônicos (verde água)
+                        '#FFA07A', // Mensalidades (laranja claro)
+                        '#cbaacb', // Terapia (lilás)
+                        '#ffb3ba', // Alimentação (rosa claro)
+                        '#bae1ff'  // Vestuário (azul claro)
+                    ],
+                    borderWidth: 0
                 }]
             };
 
             const pieData = {
                 labels: ['Eduardo', 'Carolina'],
                 datasets: [{
-                    data: [710, 0],
+                    data: [710, 450],
                     backgroundColor: ['#d6eaff', '#b8e0d2']
                 }]
             };
