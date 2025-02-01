@@ -68,12 +68,14 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 800px;
         }
 
         th, td {
@@ -85,6 +87,8 @@
         th {
             background-color: #f8f9fa;
             color: #666;
+            position: sticky;
+            top: 0;
         }
 
         .summary-card {
@@ -172,14 +176,13 @@
                     <tr>
                         <th>Data</th>
                         <th>Categoria</th>
-                        <th>Tipo</th>
+                        <th>Descrição</th>
                         <th>Valor</th>
                         <th>Quem Gerou</th>
                         <th>Quem Pagou</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Despesas anteriores -->
                     <tr>
                         <td>21/01/2025</td>
                         <td>Eletrônicos</td>
@@ -204,14 +207,12 @@
                         <td>Maria Eduarda</td>
                         <td>Carolina</td>
                     </tr>
-
-                    <!-- Novas despesas -->
                     <tr>
                         <td>29/01/2025</td>
                         <td>Eletrônicos</td>
                         <td>Case couro magsafe Iphone 14</td>
                         <td class="value-cell">R$ 199,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -219,7 +220,7 @@
                         <td>Eletrônicos</td>
                         <td>Película de cerâmica iPhone 13 Pro</td>
                         <td class="value-cell">R$ 70,00</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -227,7 +228,7 @@
                         <td>Eletrônicos</td>
                         <td>Strap phone premium brilhante</td>
                         <td class="value-cell">R$ 59,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -235,7 +236,7 @@
                         <td>Eletrônicos</td>
                         <td>Case especial Samsung S21 SE</td>
                         <td class="value-cell">R$ 59,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Mariana</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -243,7 +244,7 @@
                         <td>Eletrônicos</td>
                         <td>Pulseira Apple Watch Sport pro 38mm</td>
                         <td class="value-cell">R$ 99,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -251,7 +252,7 @@
                         <td>Eletrônicos</td>
                         <td>Fone de ouvido BT My Music Danx</td>
                         <td class="value-cell">R$ 249,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Mariana</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -259,7 +260,7 @@
                         <td>Eletrônicos</td>
                         <td>Fone de ouvido BT My Music pro Danx</td>
                         <td class="value-cell">R$ 249,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -267,7 +268,7 @@
                         <td>Eletrônicos</td>
                         <td>Smartwatch 8 pro</td>
                         <td class="value-cell">R$ 499,90</td>
-                        <td>Maria Eduarda</td>
+                        <td>Carolina</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
@@ -275,13 +276,13 @@
                         <td>Eletrônicos</td>
                         <td>Película de cerâmica fosca Samsung S21 SE</td>
                         <td class="value-cell">R$ 70,00</td>
-                        <td>Maria Eduarda</td>
+                        <td>Mariana</td>
                         <td>Carolina</td>
                     </tr>
                     <tr>
                         <td>31/01/2025</td>
                         <td>Pagamentos</td>
-                        <td>Condomínio do Sho</td>
+                        <td>Condominio do Sho</td>
                         <td class="value-cell">R$ 2,50</td>
                         <td>Carolina</td>
                         <td>Carolina</td>
@@ -374,17 +375,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Dados atualizados com cores distintas
             const categoryData = {
-                labels: ['Eletrônicos', 'Mensalidades', 'Terapia', 'Alimentação', 'Vestuário'],
+                labels: ['Eletrônicos', 'Mensalidades', 'Terapia', 'Alimentação', 'Vestuário', 'Pagamentos'],
                 datasets: [{
-                    data: [1559.30, 342, 450, 458.87, 724.98], // Valores atualizados
+                    data: [1927.30, 342.00, 450.00, 458.87, 724.98, 2.50],
                     backgroundColor: [
-                        '#88c9b9', // Eletrônicos (verde água)
-                        '#FFA07A', // Mensalidades (laranja claro)
-                        '#cbaacb', // Terapia (lilás)
-                        '#ffb3ba', // Alimentação (rosa claro)
-                        '#bae1ff'  // Vestuário (azul claro)
+                        '#88c9b9',
+                        '#FFA07A',
+                        '#cbaacb',
+                        '#ffb3ba',
+                        '#bae1ff',
+                        '#FFE4B5'
                     ],
                     borderWidth: 0
                 }]
@@ -393,12 +394,11 @@
             const pieData = {
                 labels: ['Eduardo', 'Carolina'],
                 datasets: [{
-                    data: [710, 3195.65], // Valores atualizados
+                    data: [710, 3195.65],
                     backgroundColor: ['#d6eaff', '#b8e0d2']
                 }]
             };
 
-            // Configuração dos gráficos
             const chartOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -414,7 +414,6 @@
                 }
             };
 
-            // Inicializar gráficos
             new Chart(document.getElementById('categoryChart'), {
                 type: 'doughnut',
                 data: categoryData,
